@@ -1,20 +1,36 @@
 {
+  "main": "main.js",
   "name": "core-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.8",
+    "@mui/material": "^6.4.8",
+    "@mui/x-data-grid": "^7.28.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.8.3",
+    "chart.js": "^4.4.8",
+    "lucide-react": "^0.482.0",
     "react": "^19.0.0",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.0.0",
+    "react-router-dom": "^7.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env BROWSER=none react-scripts start",
+    "react-start": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
+    "electron-dev": "concurrently -k \"npm run react-start\" \"wait-on http://localhost:3000 && npm run electron-start\"",
+    "electron-dev1": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && npm run electron-start\"",
+    "electron-prod": "npm run build && electron .",
+    "electron-start": "echo Starting Electron... && electron .",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -35,5 +51,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^35.0.2",
+    "wait-on": "^8.0.3"
   }
 }
